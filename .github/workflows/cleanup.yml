@@ -1,0 +1,17 @@
+name: Cleanup Releases
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  cleanup:
+    name: Cleanup old releases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dev-drprasad/delete-older-releases@v0.2.0
+        with:
+          keep_latest: 70
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
